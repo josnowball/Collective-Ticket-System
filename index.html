@@ -1,64 +1,74 @@
 <!DOCTYPE html>
-
 <html>
+<html lang="en">
 <head>
-    <title>Issue Reporting Form</title>
-    <!-- Add some basic styling -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 0;
-        }
-        .container {
-            width: 300px;
-            margin: 0 auto;
-        }
-        input[type="text"], select, textarea {
-            width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        input[type="submit"] {
-            width: 100%;
-            background-color: #4CAF50;
-            color: white;
-            padding: 14px 20px;
-            margin: 8px 0;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <title>Feedback and Issue Reporting Form</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="container">
-    <h2>Issue Reporting Form</h2>
+    <h2>Feedback and Issue Reporting Form</h2>
 
-    <form action="/submit_issue" method="post">
+    <!-- Language Links -->
+    <div class="language-switch">
+        <a href="index.html">English</a> |
+        <a href="index_fr.html">Français</a> |
+        <a href="index_es.html">Español</a>
+    </div>
+
+    <form action="/submit_feedback" method="post" enctype="multipart/form-data">
+        <!-- Your form fields go here -->
+    </form>
+</div>
+    
+
+<body>
+
+<div class="container">
+    <h2>Feedback and Issue Reporting Form</h2>
+
+    <form action="/submit_feedback" method="post" enctype="multipart/form-data">
+        <!-- Feedback Type -->
+        <label for="feedback_type">Feedback Type:</label>
+        <select id="feedback_type" name="feedback_type">
+            <option value="compliment">Compliment</option>
+            <option value="improvement">Leave a note for improvement</option>
+        </select>
+
+        <!-- Location -->
         <label for="location">Location:</label>
         <select id="location" name="location">
             <option value="kitchen">Kitchen</option>
             <option value="first_floor">First Floor</option>
             <option value="second_floor">Second Floor</option>
-            <!-- Add other locations as needed -->
+            <option value="third_floor">Third Floor</option>
         </select>
 
-        <label for="issue">Issue Description:</label>
-        <textarea id="issue" name="issue" placeholder="Describe the issue..." style="height:100px"></textarea>
+        <!-- Area -->
+        <label for="area">Area:</label>
+        <input type="text" id="area" name="area" placeholder="e.g., counter, sink, balcony...">
+
+        <!-- Urgency Level -->
+        <label for="urgency">Urgency Level:</label>
+        <select id="urgency" name="urgency">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+        </select>
+
+        <!-- Photo Upload -->
+        <label for="photo">Upload a Photo (optional):</label>
+        <input type="file" id="photo" name="photo" accept="image/*">
+
+        <!-- Additional Comments -->
+        <label for="comments">Additional Comments:</label>
+        <textarea id="comments" name="comments" placeholder="Your comments..." style="height:100px"></textarea>
 
         <input type="submit" value="Submit">
     </form>
 </div>
 
 </body>
-    
 </html>
