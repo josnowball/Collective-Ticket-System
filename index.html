@@ -21,7 +21,7 @@
         <a href="index_es.html">Español</a>
     </div>
 
-  <form action="https://python-cts-zmg147258.replit.app/submit" method="post" enctype="multipart/form-data">
+    <form action="https://python-cts-zmg147258.replit.app/submit" method="post" enctype="multipart/form-data">
         <!-- Feedback Type -->
         <label for="feedback_type">Feedback Type:</label>
         <select id="feedback_type" name="feedback_type">
@@ -31,16 +31,17 @@
 
         <!-- Location -->
         <label for="location">Location:</label>
-        <select id="location" name="location">
+        <select id="location" name="location" onchange="updateAreas()">
             <option value="kitchen">Kitchen</option>
             <option value="first_floor">First Floor</option>
             <option value="second_floor">Second Floor</option>
             <option value="third_floor">Third Floor</option>
         </select>
 
-        <!-- Area -->
-        <label for="area">Area:</label>
-        <input type="text" id="area" name="area" placeholder="e.g., counter, sink, balcony...">
+        <!-- Areas -->
+        <div id="areas">
+            <!-- Checkboxes for areas will be inserted here by JavaScript -->
+        </div>
 
         <!-- Urgency Level -->
         <label for="urgency">Urgency Level:</label>
@@ -61,6 +62,37 @@
         <input type="submit" value="Submit">
     </form>
 </div>
+
+<script>
+    function updateAreas() {
+        var location = document.getElementById('location').value;
+        var areasDiv = document.getElementById('areas');
+        areasDiv.innerHTML = ''; // Clear current checkboxes
+
+        var areas = {
+            'kitchen': ['counter', 'sink', 'dishracks', 'stovetop', 'floor'],
+            'first_floor': ['common_space', 'dinner_table', 'bathroom', 'backyard', 'trash_full', 'recycling_full'],
+            'second_floor': ['common_space', 'bathroom', 'balconey'],
+            'third_floor': ['common_space', 'bathroom', 'balconey'],
+        };
+
+        var currentAreas = areas[location] || [];
+        currentAreas.forEach(function(area) {
+            var label = document.createElement('label');
+            var checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.name = 'area[]';
+            checkbox.value = area;
+            label.appendChild(checkbox);
+            label.appendChild(document.createTextNode(area.replace(/_/g, ' '))); // Replace underscores with spaces for readability
+            areasDiv.appendChild(label);
+            areasDiv.appendChild(document.createElement('br')); // Line break for each checkbox
+        });
+    }
+
+    // Initialize areas on page load
+    document.addEventListener('DOMContentLoaded', updateAreas);
+</script>
 
 </body>
 </html>
