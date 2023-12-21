@@ -2,38 +2,97 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Formulario de Comentarios y Reporte de Problemas</title>
+    <title>Formulario de Comentarios e Informes de Problemas</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <div class="container">
-    <h2>Formulario de Comentarios y Reporte de Problemas</h2>
+    <!-- Imagen sobre el título -->
+    <img src="IMG_6155.jpg" alt="Imagen de fondo" style="width: 100%; height: auto;">
 
+    <h2>Formulario de Comentarios e Informes de Problemas</h2>
+
+    <!-- Enlaces de Idioma -->
     <div class="language-switch">
-        <a href="index.html">English</a> |
-        <a href="index_fr.html">Français</a> |
+        <a href="index.html">Inglés</a> |
+        <a href="index_fr.html">Francés</a> |
         <a href="index_es.html">Español</a>
     </div>
 
-  <form action="https://python-cts-zmg147258.replit.app/submit" method="post" enctype="multipart/form-data">
-        <label for="feedback_type">Tipo de Retroalimentación:</label>
+    <form action="https://cts-zmg147258.replit.app/submit" method="post" enctype="multipart/form-data">
+        <!-- Tipo de Comentario -->
+        <label for="feedback_type">Tipo de Comentario:</label>
         <select id="feedback_type" name="feedback_type">
             <option value="compliment">Elogio</option>
             <option value="improvement">Dejar una nota para mejorar</option>
         </select>
 
+        <!-- Ubicación -->
         <label for="location">Ubicación:</label>
-        <select id="location" name="location">
+        <select id="location" name="location" onchange="updateAreas()">
             <option value="kitchen">Cocina</option>
             <option value="first_floor">Primer Piso</option>
             <option value="second_floor">Segundo Piso</option>
             <option value="third_floor">Tercer Piso</option>
         </select>
 
-        <label for="area">Área:</label>
-        <input type="text" id="area" name="area" placeholder="por ejemplo, mostrador, fregadero, balcón...">
+        <!-- Áreas -->
+        <div id="areas">
+// ...
 
+// Initialize areas on page load
+document.addEventListener('DOMContentLoaded', updateAreas);
+
+// Mapping between Spanish frontend labels and English backend values
+var areaMappings = {
+    'counter': 'mostrador',
+    'sink': 'fregadero',
+    'dishracks': 'escurridor',
+    'stovetop': 'cocina',
+    'floor': 'suelo',
+    'dinner_table': 'mesa_de_cena',
+    'bathroom': 'baño',
+    'backyard': 'patio_trasero',
+    'trash_full': 'basura_llena',
+    'recycling_full': 'reciclaje_lleno',
+    'common_space': 'espacio_común',
+    'baño': 'baño',
+    'balcón': 'balcón',
+   
+};
+
+function updateAreas() {
+    var location = document.getElementById('location').value;
+    var areasDiv = document.getElementById('areas');
+    areasDiv.innerHTML = ''; // Clear current checkboxes
+
+    var areas = {
+        'kitchen': ['counter', 'sink', 'dishracks', 'stovetop', 'floor'],
+        'first_floor': ['common_space', 'dinner_table', 'bathroom', 'backyard', 'trash_full', 'recycling_full'],
+        'second_floor': ['common_space', 'bathroom', 'balconey'],
+        'third_floor': ['common_space', 'bathroom', 'balconey'],
+    };
+
+    var currentAreas = areas[location] || [];
+    currentAreas.forEach(function(area) {
+        // Translate the area label for the frontend
+        var translatedArea = areaMappings[area] || area;
+        var label = document.createElement('label');
+        var checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.name = 'area[]';
+        checkbox.value = translatedArea; // Send the translated value to the backend
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(translatedArea.replace(/_/g, ' '))); // Replace underscores with spaces for readability
+        areasDiv.appendChild(label);
+        areasDiv.appendChild(document.createElement('br')); // Line break for each checkbox
+    });
+}
+        </div>
+
+        <!-- Nivel de Urgencia -->
         <label for="urgency">Nivel de Urgencia:</label>
         <select id="urgency" name="urgency">
             <option value="low">Bajo</option>
@@ -41,15 +100,19 @@
             <option value="high">Alto</option>
         </select>
 
+        <!-- Carga de Fotos -->
         <label for="photo">Subir una Foto (opcional):</label>
         <input type="file" id="photo" name="photo" accept="image/*">
 
+        <!-- Comentarios Adicionales -->
         <label for="comments">Comentarios Adicionales:</label>
         <textarea id="comments" name="comments" placeholder="Tus comentarios..." style="height:100px"></textarea>
 
         <input type="submit" value="Enviar">
     </form>
 </div>
+
+
 
 </body>
 </html>
