@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire de Soumission de Commentaires et de Signalement de Problème</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Formulaire de Commentaires et de Signalement de Problème</h2>
+
+    <div class="language-switch">
+        <a href="index.html">English</a> |
+        <a href="index_fr.html">Français</a> |
+        <a href="index_es.html">Español</a>
+    </div>
+
+    <form action="/submit_feedback" method="post" enctype="multipart/form-data">
+        <label for="feedback_type">Type de Retour :</label>
+        <select id="feedback_type" name="feedback_type">
+            <option value="compliment">Compliment</option>
+            <option value="improvement">Laisser une note d'amélioration</option>
+        </select>
+
+        <label for="location">Emplacement :</label>
+        <select id="location" name="location">
+            <option value="kitchen">Cuisine</option>
+            <option value="first_floor">Premier Étage</option>
+            <option value="second_floor">Deuxième Étage</option>
+            <option value="third_floor">Troisième Étage</option>
+        </select>
+
+        <label for="area">Zone :</label>
+        <input type="text" id="area" name="area" placeholder="par exemple, comptoir, évier, balcon...">
+
+        <label for="urgency">Niveau d'Urgence :</label>
+        <select id="urgency" name="urgency">
+            <option value="low">Faible</option>
+            <option value="medium">Moyen</option>
+            <option value="high">Élevé</option>
+        </select>
+
+        <label for="photo">Télécharger une Photo (facultatif) :</label>
+        <input type="file" id="photo" name="photo" accept="image/*">
+
+        <label for="comments">Commentaires Supplémentaires :</label>
+        <textarea id="comments" name="comments" placeholder="Vos commentaires..." style="height:100px"></textarea>
+
+        <input type="submit" value="Soumettre">
+    </form>
+</div>
+
+</body>
+</html>
