@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Issue Reporting Form</title>
+    <!-- Add some basic styling -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+        .container {
+            width: 300px;
+            margin: 0 auto;
+        }
+        input[type="text"], select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Issue Reporting Form</h2>
+
+    <form action="/submit_issue" method="post">
+        <label for="location">Location:</label>
+        <select id="location" name="location">
+            <option value="kitchen">Kitchen</option>
+            <option value="first_floor">First Floor</option>
+            <option value="second_floor">Second Floor</option>
+            <!-- Add other locations as needed -->
+        </select>
+
+        <label for="issue">Issue Description:</label>
+        <textarea id="issue" name="issue" placeholder="Describe the issue..." style="height:100px"></textarea>
+
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+</body>
+</html>
