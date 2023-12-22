@@ -78,8 +78,7 @@ var areaMappingsFrench = {
     'trash_full': 'poubelle_pleine',
     'recycling_full': 'recyclage_plein',
     'common_space': 'espace_commune',
-    'balcón': 'balcon',
-};
+    'balcón': 'balcon',};
 
 function updateAreas() {
     var location = document.getElementById('location').value;
@@ -92,6 +91,21 @@ function updateAreas() {
         'second_floor': ['common_space', 'bathroom', 'balconey'],
         'third_floor': ['common_space', 'bathroom', 'balconey'],
     };
+
+    var currentAreas = areas[location] || [];
+    currentAreas.forEach(function(area) {
+        var translatedArea = areaMappingsFrench[area] || area; // Translate area name
+        var label = document.createElement('label');
+        var checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.name = 'area[]';
+        checkbox.value = area; // Keep the value in English for backend processing
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(translatedArea.replace(/_/g, ' '))); // Use translated name for display
+        areasDiv.appendChild(label);
+        areasDiv.appendChild(document.createElement('br'));
+    });
+}
 
     var currentAreas = areas[location] || [];
     currentAreas.forEach(function(area) {
