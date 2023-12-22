@@ -64,10 +64,6 @@
 </div>
 
 <script>
-    function updateAreas() {
-        var location = document.getElementById('location').value;
-        var areasDiv = document.getElementById('areas');
-        areasDiv.innerHTML = ''; // Clear current checkboxes
 
 // Mapping between French frontend labels and English backend values
 var areaMappingsFrench = {
@@ -84,6 +80,13 @@ var areaMappingsFrench = {
     'common_space': 'espace_commune',
     'balcón': 'balcon',
 };
+    
+    function updateAreas() {
+        var location = document.getElementById('location').value;
+        var areasDiv = document.getElementById('areas');
+        areasDiv.innerHTML = ''; // Clear current checkboxes
+
+
         
         var areas = {
             'kitchen': ['counter', 'sink', 'dishracks', 'stovetop', 'floor'],
